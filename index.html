@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doidera — Conectando Freelancers e Empregadores</title>
+<meta name="description" content="Doidera é a ponte entre freelancers talentosos e empresas que precisam contratar rápido.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#home" class="logo" data-nav="home">Doidera<span>.</span></a>
+    <nav class="main-nav">
+      <button class="nav-link active" data-nav="home">Início</button>
+      <button class="nav-link" data-nav="freelancers">Freelancers</button>
+      <button class="nav-link" data-nav="vagas">Vagas</button>
+      <button class="nav-link" data-nav="cadastro">Cadastrar</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- HOME -->
+  <section id="view-home" class="view">
+    <div class="hero">
+      <h1>A ponte entre <span class="accent">freelancers</span> e <span class="accent">empregadores</span></h1>
+      <p class="hero-sub">Encontre talentos para o seu projeto ou encontre o próximo projeto para você. Simples, direto, sem burocracia.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" data-nav="vagas">Sou empregador — buscar talentos</button>
+        <button class="btn btn-outline" data-nav="freelancers">Sou freelancer — buscar vagas</button>
+      </div>
+    </div>
+
+    <div class="stats" id="stats-row">
+      <div class="stat-card">
+        <strong id="stat-freelancers">0</strong>
+        <span>Freelancers cadastrados</span>
+      </div>
+      <div class="stat-card">
+        <strong id="stat-vagas">0</strong>
+        <span>Vagas abertas</span>
+      </div>
+      <div class="stat-card">
+        <strong id="stat-skills">0</strong>
+        <span>Habilidades diferentes</span>
+      </div>
+    </div>
+
+    <div class="how-it-works">
+      <h2>Como funciona</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Crie seu perfil</h3>
+          <p>Freelancer: cadastre suas habilidades e valor/hora. Empregador: publique sua vaga com os requisitos.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Encontre o match</h3>
+          <p>Filtre por habilidade e veja na hora quem combina com o que você precisa.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Feche negócio</h3>
+          <p>Use o contato informado no perfil ou vaga para conversar e fechar diretamente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREELANCERS -->
+  <section id="view-freelancers" class="view hidden">
+    <div class="view-header">
+      <h2>Freelancers</h2>
+      <p>Empregadores: encontre o talento certo filtrando por habilidade.</p>
+    </div>
+
+    <div class="filter-bar">
+      <input type="text" id="filter-freelancers" placeholder="Filtrar por habilidade (ex: React, Design, Copywriting)...">
+    </div>
+
+    <div id="freelancers-list" class="card-grid"></div>
+    <p id="freelancers-empty" class="empty-msg hidden">Nenhum freelancer encontrado. Que tal <button class="link-btn" data-nav="cadastro">cadastrar o primeiro</button>?</p>
+  </section>
+
+  <!-- VAGAS -->
+  <section id="view-vagas" class="view hidden">
+    <div class="view-header">
+      <h2>Vagas abertas</h2>
+      <p>Freelancers: encontre oportunidades que combinam com o seu perfil.</p>
+    </div>
+
+    <div class="filter-bar">
+      <input type="text" id="filter-vagas" placeholder="Filtrar por habilidade ou palavra-chave...">
+    </div>
+
+    <div id="vagas-list" class="card-grid"></div>
+    <p id="vagas-empty" class="empty-msg hidden">Nenhuma vaga encontrada. Que tal <button class="link-btn" data-nav="cadastro">publicar a primeira</button>?</p>
+  </section>
+
+  <!-- CADASTRO -->
+  <section id="view-cadastro" class="view hidden">
+    <div class="view-header">
+      <h2>Cadastrar</h2>
+      <p>Escolha o tipo de cadastro que você quer criar.</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="tab-freelancer">Sou Freelancer</button>
+      <button class="tab-btn" data-tab="tab-vaga">Sou Empregador</button>
+    </div>
+
+    <form id="tab-freelancer" class="tab-panel form-card">
+      <h3>Cadastro de Freelancer</h3>
+      <label>Nome completo
+        <input type="text" name="nome" required placeholder="Seu nome">
+      </label>
+      <label>Título profissional
+        <input type="text" name="titulo" required placeholder="Ex: Desenvolvedor(a) Front-end">
+      </label>
+      <label>Habilidades (separadas por vírgula)
+        <input type="text" name="skills" required placeholder="Ex: React, Node.js, CSS">
+      </label>
+      <label>Valor por hora (R$)
+        <input type="number" name="valorHora" min="0" step="1" placeholder="Ex: 80">
+      </label>
+      <label>Sobre você
+        <textarea name="bio" rows="3" placeholder="Conte um pouco da sua experiência"></textarea>
+      </label>
+      <label>Contato (e-mail ou WhatsApp)
+        <input type="text" name="contato" required placeholder="seuemail@exemplo.com">
+      </label>
+      <button type="submit" class="btn btn-primary">Publicar perfil</button>
+      <p class="form-msg" id="msg-freelancer"></p>
+    </form>
+
+    <form id="tab-vaga" class="tab-panel form-card hidden">
+      <h3>Publicar Vaga</h3>
+      <label>Título da vaga
+        <input type="text" name="titulo" required placeholder="Ex: Freelancer para landing page">
+      </label>
+      <label>Empresa
+        <input type="text" name="empresa" required placeholder="Nome da empresa ou seu nome">
+      </label>
+      <label>Habilidades necessárias (separadas por vírgula)
+        <input type="text" name="skills" required placeholder="Ex: Figma, HTML, CSS">
+      </label>
+      <label>Orçamento (R$)
+        <input type="text" name="orcamento" placeholder="Ex: 1500 ou A combinar">
+      </label>
+      <label>Descrição da vaga
+        <textarea name="descricao" rows="3" required placeholder="Descreva o que precisa ser feito"></textarea>
+      </label>
+      <label>Contato (e-mail ou WhatsApp)
+        <input type="text" name="contato" required placeholder="contato@empresa.com">
+      </label>
+      <button type="submit" class="btn btn-primary">Publicar vaga</button>
+      <p class="form-msg" id="msg-vaga"></p>
+    </form>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Doidera — feito para aproximar quem precisa de trabalho de quem precisa de talento.</p>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
